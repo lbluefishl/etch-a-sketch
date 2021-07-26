@@ -2,6 +2,11 @@ let gridContainer = document.getElementById('grid-container');
 let grids;
 let resetButton = document.getElementById('reset');
 let numberOfGrids = 16;
+let randomColor = `rgb(${Math.floor(Math.random()*256)},${Math.floor(Math.random()*256)},${Math.floor(Math.random()*256)})`
+
+generateGrid();
+grids.forEach(grid => grid.addEventListener('mouseover', activateGrid)); 
+resetButton.addEventListener('click',reset);
 
 function generateGrid() {
     for (i=0; i<numberOfGrids**2; i++) {
@@ -17,14 +22,6 @@ function generateGrid() {
     grids = document.querySelectorAll('div.grid')
 }
 
-let randomColor = `rgb(${Math.floor(Math.random()*256)},${Math.floor(Math.random()*256)},${Math.floor(Math.random()*256)})`
-console.log(randomColor);
-
-
-generateGrid();
-
-grids.forEach(grid => grid.addEventListener('mouseover', activateGrid)); 
-
 function activateGrid() {
 
     if (this.className !== 'active') {
@@ -32,7 +29,7 @@ function activateGrid() {
         this.style.setProperty('background-color',randomColor);
     }
     let opacity;
-    if (!this.style.opacity) {
+    if (!this.style.opacity) {                  
         opacity = 1;
         this.style.setProperty('opacity',`${opacity/10}`);
     } else {
@@ -43,8 +40,6 @@ function activateGrid() {
  
     }
 }
-
-resetButton.addEventListener('click',reset);
 
 function reset() {
     grids.forEach((grid) => { 
