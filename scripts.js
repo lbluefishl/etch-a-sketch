@@ -54,7 +54,9 @@ function reset() {
 
     if (numberOfGrids>1 && numberOfGrids<100) {
         generateGrid();
-        grids.forEach(grid => grid.addEventListener('mouseover', activateGrid));  
+        grids.forEach(grid => grid.addEventListener('mouseover', activateGrid)); 
+        randomColor = `rgb(${Math.floor(Math.random()*256)},${Math.floor(Math.random()*256)},${Math.floor(Math.random()*256)})`
+
     } else {
         alert('Please enter a valid number between 2 and 100.');
         reset();  
